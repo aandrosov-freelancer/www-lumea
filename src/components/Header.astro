@@ -16,7 +16,7 @@
     <!-- Actions -->
     <div class="flex items-center gap-[var(--spacing-m)]">
       <a class="hidden md:inline text-[length:var(--text-s)] text-text-title" href="tel:+78152456789">+7 (8152) 45-67-89</a>
-      <a class="hidden xs:inline-flex btn-primary" href="/contacts">Записаться</a>
+      <a class="hidden xs:inline-flex btn-outline" href="/contacts">Записаться</a>
       <button class="nav-toggle md:hidden" aria-expanded="false" aria-label="Меню" type="button">
         <span></span><span></span>
       </button>
@@ -27,7 +27,6 @@
     <a href="/">Главная</a>
     <a href="/services">Услуги</a>
     <a href="/contacts">Контакты</a>
-    <a href="tel:+78152456789">+7 (8152) 45-67-89</a>
   </div>
 </header>
 
@@ -53,6 +52,27 @@
     width: 100%;
   }
 
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: var(--spacing-2xs) var(--spacing-m);
+    font-size: var(--text-s);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    background: transparent;
+    color: var(--color-text-title);
+    border: 1px solid var(--color-hairline-2);
+    transition: border-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+  }
+  .btn-outline:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
   .nav-toggle {
     display: flex;
     flex-direction: column;
@@ -72,6 +92,7 @@
   .site-header.is-open .nav-toggle span:last-child {
     transform: translateY(-3.75px) rotate(-45deg);
   }
+
   /* Mobile nav drawer */
   .mobile-nav {
     display: none;
@@ -86,12 +107,35 @@
   .site-header.is-open .mobile-nav {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--spacing-s);
   }
   .mobile-nav a {
+    position: relative;
     font-size: var(--text-l);
     font-family: var(--font-display);
     color: var(--color-text-title);
+    padding-bottom: 2px;
+  }
+  .mobile-nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-primary);
+    transition: width 0.35s ease;
+  }
+  .mobile-nav a:hover::after {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .nav-toggle,
+    .mobile-nav {
+      display: none !important;
+    }
   }
 </style>
 

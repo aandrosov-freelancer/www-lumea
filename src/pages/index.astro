@@ -1,17 +1,189 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Strip from '../components/Strip.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Testimonial from '../components/Testimonial.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { Image } from 'astro:assets';
 
+// Service card images
+import chistkaImg from '../assets/images/services/chistka.jpg';
+import massageImg from '../assets/images/services/massage.jpg';
+import pilingImg from '../assets/images/services/piling.jpg';
+import mezoImg from '../assets/images/services/mezo.jpg';
+import plazmaImg from '../assets/images/services/plazma.jpg';
+import botoxImg from '../assets/images/services/botox.jpg';
+import konturImg from '../assets/images/services/kontur.jpg';
+
+// Section images
+import approachImg from '../assets/images/unsplash/approach.jpg';
+import galleryMainImg from '../assets/images/unsplash/gallery-main.jpg';
+import galleryProcedureImg from '../assets/images/unsplash/gallery-procedure.jpg';
+import gallerySpaImg from '../assets/images/unsplash/gallery-spa.jpg';
+import ctaSkincareImg from '../assets/images/unsplash/cta-skincare.jpg';
+
+const services = [
+  { name: 'Чистка лица', text: 'Комбинированная, механическая, ультразвуковая', price: 'от 4 500 ₽', image: chistkaImg },
+  { name: 'Массаж лица', text: 'Лимфодренажный, скульптурный, буккальный', price: 'от 3 200 ₽', image: massageImg },
+  { name: 'Пилинги лица', text: 'Кислотные, ферментативные, ретиноевые', price: 'от 5 000 ₽', image: pilingImg },
+  { name: 'Мезотерапия', text: 'Коктейли для лица, шеи и зоны вокруг глаз', price: 'от 6 500 ₽', image: mezoImg },
+  { name: 'Плазмотерапия', text: 'PRP-терапия плазмой собственной крови', price: 'от 8 900 ₽', image: plazmaImg },
+  { name: 'Ботулинотерапия', text: 'Коррекция мимических морщин и гипергидроза', price: 'от 12 500 ₽', image: botoxImg },
+  { name: 'Контурная пластика', text: 'Филлеры: губы, скулы, носогубные складки', price: 'от 18 000 ₽', image: konturImg },
+];
+
+const testimonials = [
+  {
+    text: '«Пришла на чистку лица, осталась на курс. Кожа впервые за годы спокойная — без высыпаний и стянутости.»',
+    name: 'Марина',
+    role: '34 года · чистка лица, уход',
+  },
+  {
+    text: '«Делала контурную пластику губ. Никто не заметил, что что-то менялось — просто стало красивее.»',
+    name: 'Анна',
+    role: '29 лет · контурная пластика',
+  },
+  {
+    text: '«Плазмотерапия и массаж лица. Через месяц подруги спрашивали, к какому косметологу я хожу.»',
+    name: 'Ольга',
+    role: '41 год · плазмотерапия, массаж',
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home">
+  <!-- Hero -->
+  <Hero />
+
+  <!-- Strip -->
+  <Strip />
+
+  <!-- Services Section -->
+  <section class="section py-[var(--spacing-3xl)]">
+    <div class="container">
+      <div class="section-head grid grid-cols-1 md:grid-cols-2 gap-[var(--spacing-l)] mb-[var(--spacing-2xl)]">
+        <div>
+          <Eyebrow text="Услуги" />
+          <h2 class="section-title text-[length:var(--text-3xl)] mt-[var(--spacing-s)]">Семь процедур, которые решают почти всё</h2>
+        </div>
+        <div>
+          <p class="section-desc text-text-body">Каждый протокол начинается с диагностики кожи и заканчивается домашним уходом, который мы подбираем под вас.</p>
+          <p class="mt-[var(--spacing-s)]"><a class="link-arrow inline-flex items-center gap-1 text-text-title font-medium hover:text-primary transition-colors" href="/services">Все услуги и цены →</a></p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-[var(--spacing-l)]">
+        {services.map(svc => (
+          <ServiceCard name={svc.name} text={svc.text} price={svc.price} image={svc.image} />
+        ))}
+        <!-- CTA card -->
+        <div class="svc-cta flex flex-col justify-center border border-dashed border-hairline-2 rounded-md bg-surface p-[var(--spacing-l)]">
+          <h3 class="font-display text-[length:var(--text-l)] text-text-title">Не знаете, с чего начать?</h3>
+          <p class="text-text-body mt-[var(--spacing-2xs)]">Бесплатная диагностика кожи и план процедур от врача-косметолога — 30 минут.</p>
+          <a class="btn btn-primary mt-[var(--spacing-m)] inline-flex self-start" href="/contacts">Получить план</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach Section -->
+  <section class="section pb-[var(--spacing-3xl)]">
+    <div class="container">
+      <div class="approach-grid grid grid-cols-1 md:grid-cols-2 gap-[var(--spacing-2xl)] items-center">
+        <div class="approach-media">
+          <Image src={approachImg} alt="" class="w-full rounded-lg object-cover" widths={[400, 900]} sizes="(max-width: 768px) 100vw, 50vw" loading="lazy" />
+        </div>
+        <div class="approach-body">
+          <Eyebrow text="Подход" />
+          <h2 class="section-title text-[length:var(--text-3xl)] mt-[var(--spacing-s)]">Сначала — диагностика, потом — процедуры</h2>
+          <p class="section-desc text-text-body mt-[var(--spacing-s)]">Мы не продаём «модные» инъекции и не назначаем курс на глаз. Luméa работает как медицинский центр: диагностика, честный план, контроль результата на фото и в карте пациента.</p>
+          <div class="mt-[var(--spacing-xl)] space-y-0">
+            <div class="principle grid grid-cols-[auto_1fr] gap-[var(--spacing-m)] py-[var(--spacing-m)] border-b border-hairline">
+              <span class="font-display text-[length:var(--text-l)] text-primary">01</span>
+              <div>
+                <h3 class="font-display text-[length:var(--text-l)] text-text-title">Врач, а не администратор</h3>
+                <p class="text-text-body mt-[var(--spacing-3xs)]">Консультацию ведёт врач-косметолог с медицинским образованием и опытом в дерматологии.</p>
+              </div>
+            </div>
+            <div class="principle grid grid-cols-[auto_1fr] gap-[var(--spacing-m)] py-[var(--spacing-m)] border-b border-hairline">
+              <span class="font-display text-[length:var(--text-l)] text-primary">02</span>
+              <div>
+                <h3 class="font-display text-[length:var(--text-l)] text-text-title">Только сертифицированные препараты</h3>
+                <p class="text-text-body mt-[var(--spacing-3xs)]">Работаем с оригинальными филлерами, ботулотоксинами и сыворотками с отслеживаемой поставкой.</p>
+              </div>
+            </div>
+            <div class="principle grid grid-cols-[auto_1fr] gap-[var(--spacing-m)] py-[var(--spacing-m)]">
+              <span class="font-display text-[length:var(--text-l)] text-primary">03</span>
+              <div>
+                <h3 class="font-display text-[length:var(--text-l)] text-text-title">Естественный результат</h3>
+                <p class="text-text-body mt-[var(--spacing-3xs)]">Наша цель — чтобы вас спрашивали не «что вы сделали?», а «как вы так выглядите».</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery / Atmosphere Section -->
+  <section class="section pb-[var(--spacing-3xl)]">
+    <div class="container">
+      <div class="section-head grid grid-cols-1 md:grid-cols-2 gap-[var(--spacing-l)] mb-[var(--spacing-2xl)]">
+        <div>
+          <Eyebrow text="Атмосфера" />
+          <h2 class="section-title text-[length:var(--text-3xl)] mt-[var(--spacing-s)]">Тихое место в центре города</h2>
+        </div>
+        <div>
+          <p class="section-desc text-text-body">Три кабинета, отдельная стерилизация, кофе и никакой спешки. Приходите за результатом и отдыхом одновременно.</p>
+        </div>
+      </div>
+      <div class="gallery grid grid-cols-1 md:grid-cols-[1.25fr_1fr] gap-[var(--spacing-m)]">
+        <div class="gallery-left">
+          <Image src={galleryMainImg} alt="" class="w-full h-full min-h-[360px] md:min-h-[560px] object-cover rounded-lg" widths={[600, 1000]} sizes="(max-width: 768px) 100vw, 55vw" loading="lazy" />
+        </div>
+        <div class="gallery-right grid grid-cols-1 xs:grid-cols-2 md:grid-cols-1 gap-[var(--spacing-m)]">
+          <Image src={galleryProcedureImg} alt="" class="w-full object-cover rounded-lg aspect-[4/3]" widths={[400, 700]} sizes="(max-width: 768px) 50vw, 40vw" loading="lazy" />
+          <Image src={gallerySpaImg} alt="" class="w-full object-cover rounded-lg aspect-[4/3]" widths={[400, 700]} sizes="(max-width: 768px) 50vw, 40vw" loading="lazy" />
+          <div class="gallery-quote bg-dark text-light rounded-lg p-[var(--spacing-l)] flex items-center xs:col-span-2 md:col-span-1">
+            <p class="font-display text-[length:var(--text-xl)]">Красивая кожа — это уход, а не макияж.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section bg-sand py-[var(--spacing-3xl)]">
+    <div class="container">
+      <div class="section-head grid grid-cols-1 md:grid-cols-2 gap-[var(--spacing-l)] mb-[var(--spacing-2xl)]">
+        <div>
+          <Eyebrow text="Отзывы" />
+          <h2 class="section-title text-[length:var(--text-3xl)] mt-[var(--spacing-s)]">Что говорят пациенты</h2>
+        </div>
+        <div>
+          <p class="section-desc text-text-body">4,9 из 5 — средняя оценка клиники на основе 640 отзывов.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-[var(--spacing-l)]">
+        {testimonials.map(t => (
+          <Testimonial text={t.text} name={t.name} role={t.role} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section py-[var(--spacing-3xl)] pb-0">
+    <div class="container">
+      <CTABanner
+        title="Первый шаг — бесплатная диагностика кожи"
+        text="30 минут с врачом-косметологом: анализ кожи, план процедур и расчёт стоимости. Без навязывания услуг."
+        image={ctaSkincareImg}
+        primaryBtn={{ text: 'Записаться', href: '/contacts' }}
+        secondaryBtn={{ text: 'Смотреть цены', href: '/services' }}
+        infoItems={['Мурманск · пр. Ленина, 82', 'Ежедневно 09:00 — 21:00', '+7 (495) 123-45-67']}
+      />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,33 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  title: string;
+  text: string;
+  image: ImageMetadata;
+  primaryBtn?: { text: string; href: string };
+  secondaryBtn?: { text: string; href: string };
+  infoItems?: string[];
+}
+
+const { title, text, image, primaryBtn, secondaryBtn, infoItems } = Astro.props;
+---
+
+<div class="cta relative overflow-hidden rounded-[10px] min-h-[460px] flex items-end">
+  <Image src={image} alt="" class="absolute inset-0 w-full h-full object-cover" widths={[800, 1600]} sizes="100vw" />
+  <div class="absolute inset-0 bg-[linear-gradient(100deg,color-mix(in_srgb,var(--color-dark)_82%,transparent)_0%,color-mix(in_srgb,var(--color-dark)_48%,transparent)_58%,color-mix(in_srgb,var(--color-dark)_16%,transparent)_100%)]"></div>
+  <div class="relative z-10 p-[var(--spacing-2xl)] max-w-[600px]">
+    <h2 class="text-[length:var(--text-3xl)] text-light leading-[1.08]">{title}</h2>
+    <p class="text-[color-mix(in_srgb,var(--color-light)_80%,transparent)] mt-[var(--spacing-s)]">{text}</p>
+    <div class="flex flex-wrap gap-[var(--spacing-s)] mt-[var(--spacing-l)]">
+      {primaryBtn && <a class="btn btn-light btn-lg" href={primaryBtn.href}>{primaryBtn.text}</a>}
+      {secondaryBtn && <a class="btn btn-ghost btn-lg border-[color-mix(in_srgb,var(--color-light)_45%,transparent)] text-light" href={secondaryBtn.href}>{secondaryBtn.text}</a>}
+    </div>
+    {infoItems && infoItems.length > 0 && (
+      <div class="flex flex-wrap gap-x-[var(--spacing-l)] gap-y-[var(--spacing-2xs)] mt-[var(--spacing-l)] text-[length:var(--text-s)] text-[color-mix(in_srgb,var(--color-light)_70%,transparent)]">
+        {infoItems.map(item => <span>{item}</span>)}
+      </div>
+    )}
+  </div>
+</div>

@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import ServiceDetail from '../components/ServiceDetail.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+import servicesHeroImg from '../assets/images/unsplash/services-hero.jpg';
+import svcChistkaImg from '../assets/images/unsplash/svc-chistka.jpg';
+import svcMassageImg from '../assets/images/unsplash/svc-massage.jpg';
+import svcPilingImg from '../assets/images/unsplash/svc-piling.jpg';
+import svcMezoImg from '../assets/images/unsplash/svc-mezo.jpg';
+import galleryProcedureImg from '../assets/images/unsplash/gallery-procedure.jpg';
+import svcBotoxImg from '../assets/images/unsplash/svc-botox.jpg';
+import svcKonturImg from '../assets/images/unsplash/svc-kontur.jpg';
+import galleryMainImg from '../assets/images/unsplash/gallery-main.jpg';
+
+const priceRows = [
+  { name: 'Чистка лица', duration: '60–90 минут', price: 'от 4 500 ₽' },
+  { name: 'Массаж лица', duration: '45–60 минут', price: 'от 3 200 ₽' },
+  { name: 'Пилинги лица', duration: '30–40 минут', price: 'от 5 000 ₽' },
+  { name: 'Мезотерапия', duration: '30–45 минут', price: 'от 6 500 ₽' },
+  { name: 'Плазмотерапия', duration: '45 минут', price: 'от 8 900 ₽' },
+  { name: 'Ботулинотерапия', duration: '20–30 минут', price: 'от 12 500 ₽' },
+  { name: 'Контурная пластика', duration: '40–60 минут', price: 'от 18 000 ₽' },
+];
+
+const serviceDetails = [
+  {
+    index: '01', id: 'chistka', title: 'Чистка лица',
+    desc: 'Глубокая очистка пор, удаление комедонов и нормализация жирности кожи. Комбинируем механическую, ультразвуковую и вакуумную технику под состояние кожи.',
+    variants: ['Комбинированная', 'Механическая', 'Ультразвуковая'],
+    duration: '60–90 минут', price: 'от 4 500 ₽', image: svcChistkaImg,
+  },
+  {
+    index: '02', id: 'massage', title: 'Уходовые процедуры: массаж лица',
+    desc: 'Ручная техника, которая возвращает тонус мышцам и убирает отёчность. Работаем по лимфодренажным линиям, без растягивания кожи.',
+    variants: ['Лимфодренажный', 'Скульптурный', 'Буккальный', 'С уходовой маской'],
+    duration: '45–60 минут', price: 'от 3 200 ₽', image: svcMassageImg,
+  },
+  {
+    index: '03', id: 'piling', title: 'Пилинги лица',
+    desc: 'Обновление кожи и работа с пигментацией, постакне и расширенными порами. Подбираем кислоту и концентрацию по фототипу кожи.',
+    variants: ['Миндальный', 'Салициловый', 'Ферментативный', 'Ретиноевый'],
+    duration: '30–40 минут', price: 'от 5 000 ₽', image: svcPilingImg,
+  },
+  {
+    index: '04', id: 'mezo', title: 'Мезотерапия',
+    desc: 'Коктейли с гиалуроновой кислотой, витаминами и пептидами вводятся в поверхностные слои кожи. Результат — увлажнение, плотность и ровный тон.',
+    variants: ['Лицо', 'Шея и декольте', 'Вокруг глаз', 'Волосистая часть головы'],
+    duration: '30–45 минут', price: 'от 6 500 ₽', image: svcMezoImg,
+  },
+  {
+    index: '05', id: 'plazma', title: 'Плазмотерапия',
+    desc: 'PRP-терапия: плазма вашей собственной крови стимулирует обновление кожи и синтез коллагена. Курс 3–4 процедуры с интервалом в 3 недели.',
+    variants: ['Лицо', 'Периорбитальная зона', 'Шея'],
+    duration: '45 минут', price: 'от 8 900 ₽', image: galleryProcedureImg,
+  },
+  {
+    index: '06', id: 'botox', title: 'Ботулинотерапия',
+    desc: 'Расслабляем мышцы, которые создают мимические морщины, сохраняя естественную мимику. Работаем только оригинальными препаратами с проверенной логистикой.',
+    variants: ['Лоб', 'Межбровье', 'Гусиные лапки', 'Бруксизм · гипергидроз'],
+    duration: '20–30 минут', price: 'от 12 500 ₽', image: svcBotoxImg,
+  },
+  {
+    index: '07', id: 'kontur', title: 'Контурная пластика',
+    desc: 'Восстановление объёма и чёткости контуров филлерами на гиалуроновой кислоте. Работаем по принципу «меняем форму, а не лицо».',
+    variants: ['Губы', 'Скулы', 'Носогубные складки', 'Подбородок'],
+    duration: '40–60 минут', price: 'от 18 000 ₽', image: svcKonturImg,
+  },
+];
+---
+
+<BaseLayout title="Услуги">
+  <!-- Page Hero -->
+  <PageHero
+    eyebrow="Услуги и цены"
+    title="Процедуры<br>студии <i>Luméa</i>"
+    lead="Семь направлений — от базового ухода до инъекционной косметологии. Ниже подробно: как проходит процедура, сколько занимает времени и сколько стоит."
+    image={servicesHeroImg}
+  />
+
+  <!-- Jump nav -->
+  <section class="pb-[var(--spacing-l)]">
+    <div class="container">
+      <nav class="jump-nav flex flex-wrap gap-[var(--spacing-s)] py-[var(--spacing-s)] border-y border-hairline">
+        <a href="#chistka" class="text-[length:var(--text-s)] text-stone hover:text-text-title transition-colors">Чистка лица</a>
+        <a href="#massage" class="text-[length:var(--text-s)] text-stone hover:text-text-title transition-colors">Массаж лица</a>
+        <a href="#piling" class="text-[length:var(--text-s)] text-stone hover:text-text-title transition-colors">Пилинги</a>
+        <a href="#mezo" class="text-[length:var(--text-s)] text-stone hover:text-text-title transition-colors">Мезотерапия</a>
+        <a href="#plazma" class="text-[length:var(--text-s)] text-stone hover:text-text-title transition-colors">Плазмотерапия</a>
+        <a href="#botox" class="text-[length:var(--text-s)] text-stone hover:text-text-title transition-colors">Ботулинотерапия</a>
+        <a href="#kontur" class="text-[length:var(--text-s)] text-stone hover:text-text-title transition-colors">Контурная пластика</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Price Table Section -->
+  <section class="section py-[var(--spacing-3xl)] pb-0">
+    <div class="container">
+      <div class="section-head grid grid-cols-1 md:grid-cols-2 gap-[var(--spacing-l)] mb-[var(--spacing-2xl)]">
+        <div>
+          <Eyebrow text="Прайс" />
+          <h2 class="section-title text-[length:var(--text-3xl)] mt-[var(--spacing-s)]">Стоимость процедур</h2>
+        </div>
+        <div>
+          <p class="section-desc text-text-body">Итоговая цена зависит от зоны и препарата — врач назовёт её до начала процедуры.</p>
+        </div>
+      </div>
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="border-b-2 border-hairline-2 text-left">
+            <th class="py-[var(--spacing-s)] text-[length:var(--text-s)] text-stone uppercase tracking-[0.1em] font-medium">Процедура</th>
+            <th class="py-[var(--spacing-s)] text-[length:var(--text-s)] text-stone uppercase tracking-[0.1em] font-medium hidden md:table-cell">Длительность</th>
+            <th class="py-[var(--spacing-s)] text-[length:var(--text-s)] text-stone uppercase tracking-[0.1em] font-medium text-right">Стоимость</th>
+          </tr>
+        </thead>
+        <tbody>
+          {priceRows.map(row => (
+            <tr class="border-b border-hairline">
+              <td class="py-[var(--spacing-s)] text-text-title font-medium">{row.name}</td>
+              <td class="py-[var(--spacing-s)] text-stone hidden md:table-cell"><span>{row.duration}</span></td>
+              <td class="py-[var(--spacing-s)] text-text-title font-medium text-right">{row.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="text-[length:var(--text-s)] text-stone mt-[var(--spacing-m)]">Имеются противопоказания. Перед процедурой обязательна консультация врача-косметолога — она бесплатна при записи на любую услугу.</p>
+    </div>
+  </section>
+
+  <!-- Service Details -->
+  <section class="section py-[var(--spacing-3xl)]">
+    <div class="container">
+      <div class="svc-details">
+        {serviceDetails.map((svc, i) => (
+          <ServiceDetail
+            index={svc.index}
+            title={svc.title}
+            desc={svc.desc}
+            variants={svc.variants}
+            duration={svc.duration}
+            price={svc.price}
+            image={svc.image}
+            id={svc.id}
+            reverse={i % 2 !== 0}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section pb-[var(--spacing-2xl)]">
+    <div class="container">
+      <CTABanner
+        title="Сомневаетесь, какая процедура нужна?"
+        text="Запишитесь на диагностику: врач посмотрит кожу, задаст вопросы о здоровье и составит план на 3 месяца вперёд."
+        image={galleryMainImg}
+        primaryBtn={{ text: 'Записаться на диагностику', href: '/contacts' }}
+        infoItems={['Бесплатно при записи на процедуру', '30 минут']}
+      />
+    </div>
+  </section>
+</BaseLayout>

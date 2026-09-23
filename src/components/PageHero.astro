@@ -1,0 +1,29 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;     // Can contain HTML like <br> and <i>
+  lead: string;
+  image: ImageMetadata;
+}
+
+const { eyebrow, title, lead, image } = Astro.props;
+---
+
+<section class="page-hero py-[var(--spacing-3xl)]">
+  <div class="container">
+    <div class="page-hero-grid grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-[var(--spacing-2xl)] items-center">
+      <div>
+        <Eyebrow text={eyebrow} />
+        <h1 class="page-title text-[length:var(--text-4xl)] leading-[1.02] mt-[var(--spacing-s)]" set:html={title} />
+        <p class="page-lead text-[length:var(--text-l)] max-w-[50ch] mt-[var(--spacing-m)] text-text-body">{lead}</p>
+      </div>
+      <div class="page-hero-media">
+        <Image src={image} alt="" class="w-full rounded-lg object-cover" widths={[400, 800, 1000]} sizes="(max-width: 768px) 100vw, 45vw" />
+      </div>
+    </div>
+  </div>
+</section>

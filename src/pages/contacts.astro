@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import BookingForm from '../components/BookingForm.astro';
+
+import contactsHeroImg from '../assets/images/unsplash/contacts-hero.jpg';
+import gallerySpaImg from '../assets/images/unsplash/gallery-spa.jpg';
+---
+
+<BaseLayout title="Контакты">
+  <!-- Page Hero -->
+  <PageHero
+    eyebrow="Контакты"
+    title="Приходите<br>в <i>Luméa</i>"
+    lead="Мы в центре Мурманска, в пяти минутах от площади Пять Углов. Запишитесь по телефону, в мессенджере или оставьте заявку в форме ниже — перезвоним в течение 15 минут."
+    image={contactsHeroImg}
+  />
+
+  <!-- Contact Info Section -->
+  <section class="section pt-[var(--spacing-l)] py-[var(--spacing-3xl)]">
+    <div class="container">
+      <div class="contact-grid grid grid-cols-1 md:grid-cols-2 gap-[var(--spacing-2xl)]">
+        <div>
+          <Eyebrow text="Студия" />
+          <h2 class="section-title text-[length:var(--text-3xl)] mt-[var(--spacing-s)] mb-[var(--spacing-m)]">Как нас найти</h2>
+          <div class="info-list space-y-0">
+            <div class="info-row grid grid-cols-[auto_1fr] gap-[var(--spacing-m)] py-[var(--spacing-m)] border-b border-hairline">
+              <span class="text-[length:var(--text-s)] text-stone uppercase tracking-[0.1em] min-w-[80px]">Адрес</span>
+              <div>
+                <p class="text-text-title font-medium">Мурманск, пр. Ленина, 82</p>
+                <p class="text-[length:var(--text-s)] text-stone mt-[var(--spacing-3xs)]">2 этаж, вход со двора · 5 минут пешком от площади Пять Углов</p>
+              </div>
+            </div>
+            <div class="info-row grid grid-cols-[auto_1fr] gap-[var(--spacing-m)] py-[var(--spacing-m)] border-b border-hairline">
+              <span class="text-[length:var(--text-s)] text-stone uppercase tracking-[0.1em] min-w-[80px]">Телефон</span>
+              <div>
+                <p><a href="tel:+78152456789" class="text-text-title font-medium hover:text-primary transition-colors">+7 (8152) 45-67-89</a></p>
+                <p class="text-[length:var(--text-s)] text-stone mt-[var(--spacing-3xs)]">Звонки и WhatsApp с 09:00 до 21:00</p>
+              </div>
+            </div>
+            <div class="info-row grid grid-cols-[auto_1fr] gap-[var(--spacing-m)] py-[var(--spacing-m)] border-b border-hairline">
+              <span class="text-[length:var(--text-s)] text-stone uppercase tracking-[0.1em] min-w-[80px]">Почта</span>
+              <div>
+                <p><a href="mailto:hello@lumea.studio" class="text-text-title font-medium hover:text-primary transition-colors">hello@lumea.studio</a></p>
+                <p class="text-[length:var(--text-s)] text-stone mt-[var(--spacing-3xs)]">Для вопросов по уходу и сотрудничества</p>
+              </div>
+            </div>
+            <div class="info-row grid grid-cols-[auto_1fr] gap-[var(--spacing-m)] py-[var(--spacing-m)]">
+              <span class="text-[length:var(--text-s)] text-stone uppercase tracking-[0.1em] min-w-[80px]">Часы работы</span>
+              <div>
+                <p class="text-text-title font-medium">Ежедневно, 09:00 — 21:00</p>
+                <p class="text-[length:var(--text-s)] text-stone mt-[var(--spacing-3xs)]">Последняя запись — за час до закрытия</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-[var(--spacing-m)] mt-[var(--spacing-l)]">
+            <a href="https://wa.me/78152456789" class="btn btn-ghost inline-flex">WhatsApp</a>
+            <a href="https://t.me/lumea_studio" class="btn btn-ghost inline-flex">Telegram</a>
+            <a href="tel:+78152456789" class="btn btn-ghost inline-flex">Позвонить</a>
+          </div>
+        </div>
+        <div>
+          <div class="map-photo rounded-lg overflow-hidden">
+            <img src={gallerySpaImg.src} alt="" class="w-full h-full min-h-[300px] object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Form Section -->
+  <section class="section pb-[var(--spacing-3xl)]">
+    <div class="container">
+      <BookingForm />
+    </div>
+  </section>
+
+  <!-- Visit Info Section -->
+  <section class="section pb-[var(--spacing-3xl)]">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-[var(--spacing-l)]">
+        <div class="visit-item">
+          <h3 class="font-display text-[length:var(--text-l)] text-text-title">Консультация бесплатно</h3>
+          <p class="text-text-body mt-[var(--spacing-2xs)]">Диагностика кожи и план процедур — 30 минут, без обязательств и навязывания услуг.</p>
+        </div>
+        <div class="visit-item">
+          <h3 class="font-display text-[length:var(--text-l)] text-text-title">Отмена за 24 часа</h3>
+          <p class="text-text-body mt-[var(--spacing-2xs)]">Планы меняются — просто предупредите нас заранее, и мы перенесём запись без потери депозита.</p>
+        </div>
+        <div class="visit-item">
+          <h3 class="font-display text-[length:var(--text-l)] text-text-title">Стерильность</h3>
+          <p class="text-text-body mt-[var(--spacing-2xs)]">Отдельный кабинет стерилизации, одноразовые материалы и журнал обработки инструментов.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

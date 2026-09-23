@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import Eyebrow from './Eyebrow.astro';
+import heroImg from '../assets/images/hero.jpg';
+---
+
+<section class="hero py-[var(--spacing-3xl)]">
+  <div class="container">
+    <div class="hero-grid grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-[var(--spacing-2xl)] items-center">
+      <div>
+        <Eyebrow text="Мурманск · центр города" />
+        <h1 class="hero-title text-[length:var(--text-4xl)] leading-[1.02] mt-[var(--spacing-s)]">
+          Косметология,<br>которая возвращает <i class="text-primary not-italic">сияние</i> кожи
+        </h1>
+        <p class="hero-lead text-[length:var(--text-l)] max-w-[44ch] mt-[var(--spacing-m)] text-text-body">
+          Клиника эстетической косметологии Luméa. Работаем с кожей бережно и по протоколам доказательной медицины — от чистки лица до контурной пластики.
+        </p>
+        <div class="hero-actions flex flex-wrap gap-[var(--spacing-s)] mt-[var(--spacing-xl)]">
+          <a class="btn btn-primary btn-lg" href="/contacts">Записаться на консультацию</a>
+          <a class="btn btn-ghost btn-lg" href="/services">Все услуги</a>
+        </div>
+        <!-- Trust counters -->
+        <div class="hero-trust flex gap-[var(--spacing-xl)] mt-[var(--spacing-2xl)]">
+          <div class="trust-item">
+            <span class="font-display text-[length:var(--text-2xl)] text-text-title">13</span>
+            <span class="block text-[length:var(--text-s)] text-stone uppercase tracking-[0.1em]">лет практики</span>
+          </div>
+          <div class="trust-item">
+            <span class="font-display text-[length:var(--text-2xl)] text-text-title">9 400</span>
+            <span class="block text-[length:var(--text-s)] text-stone uppercase tracking-[0.1em]">процедур</span>
+          </div>
+          <div class="trust-item">
+            <span class="font-display text-[length:var(--text-2xl)] text-text-title">4,9</span>
+            <span class="block text-[length:var(--text-s)] text-stone uppercase tracking-[0.1em]">рейтинг клиники</span>
+          </div>
+        </div>
+      </div>
+      <!-- Hero image with arched top -->
+      <div class="hero-media relative">
+        <Image 
+          src={heroImg} 
+          alt="" 
+          class="hero-img w-full aspect-[4/5] object-cover object-[center_30%] rounded-b-[10px]"
+          widths={[320, 640, 1024, 1280]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+        <!-- Floating badge -->
+        <div class="absolute bottom-[var(--spacing-l)] left-[var(--spacing-m)] bg-surface rounded-lg px-[var(--spacing-m)] py-[var(--spacing-s)] shadow-[0_24px_60px_color-mix(in_srgb,var(--color-dark)_14%,transparent)] flex items-center gap-[var(--spacing-xs)]">
+          <strong class="font-display text-[length:var(--text-xl)] text-text-title">4,9</strong>
+          <span class="text-[length:var(--text-xs)] text-stone uppercase tracking-[0.1em]">640 отзывов<br>пациентов</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-img {
+    border-top-left-radius: 47% 36%;
+    border-top-right-radius: 47% 36%;
+  }
+</style>
+
+<style is:global>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: var(--spacing-2xs) var(--spacing-m);
+    font-size: var(--text-s);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--color-text-title);
+    color: var(--color-surface);
+  }
+  .btn-primary:hover {
+    background: var(--color-primary);
+  }
+  .btn-ghost {
+    border: 1px solid var(--color-hairline-2);
+    color: var(--color-text-title);
+    background: transparent;
+  }
+  .btn-ghost:hover {
+    background: var(--color-text-title);
+    color: var(--color-canvas);
+  }
+  .btn-light {
+    background: var(--color-light);
+    color: var(--color-text-title);
+  }
+  .btn-light:hover {
+    background: var(--color-primary);
+    color: var(--color-light);
+  }
+  .btn-lg {
+    padding: var(--spacing-s) var(--spacing-l);
+  }
+</style>

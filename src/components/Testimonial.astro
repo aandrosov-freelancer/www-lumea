@@ -1,0 +1,18 @@
+---
+interface Props {
+  text: string;
+  name: string;
+  role: string;
+}
+
+const { text, name, role } = Astro.props;
+---
+
+<article class="testi bg-surface rounded-md p-[var(--spacing-l)]">
+  <span class="text-tertiary tracking-[0.3em] text-[length:var(--text-l)]">★★★★★</span>
+  <p class="font-display text-[length:var(--text-l)] text-text-title leading-[1.32] mt-[var(--spacing-s)]">{text}</p>
+  <div class="mt-[var(--spacing-m)] flex items-center gap-[var(--spacing-xs)]">
+    <span class="font-medium text-text-title">{name}</span>
+    <span class="text-[length:var(--text-s)] text-stone">{role}</span>
+  </div>
+</article>

@@ -1,0 +1,11 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+<span class="eyebrow inline-flex items-center gap-[var(--spacing-xs)] text-[length:var(--text-s)] text-stone uppercase tracking-[0.22em]">
+  <span class="w-9 h-px bg-primary"></span>
+  {text}
+</span>
